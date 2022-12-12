@@ -21,6 +21,7 @@ app.get("/api/todo", (req, res) => {
 
 app.post("/api/todo", (req, res) => {
   const { text, done } = req.body;
+  console.log("req.body", req.body);
   todoList.push({
     id: id++,
     text,
