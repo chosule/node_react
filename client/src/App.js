@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 function App({ todo }) {
   const [todoList, setTodoList] = useState(null);
@@ -35,22 +36,61 @@ function App({ todo }) {
     // console.log("done", done);
   };
   return (
-    <div>
-      <h1>todo List</h1>
-      <form onSubmit={onSubmitHandler}>
-        <input name="text" />
-        <input name="done" type="checkbox" />
-        <input type="submit" value="추가" />
-      </form>
-      {todoList?.map((item) => (
-        <div key={item.id} style={{ display: "flex" }}>
-          <div>{item.id}</div>
-          <div>{item.text}</div>
-          <div>{item.done ? "Yes" : "No"}</div>
-        </div>
-      ))}
-    </div>
+    <StyledDefaultDiv>
+      <StyledDiv>
+        <StyledH1>todo List 📝</StyledH1>
+        <form onSubmit={onSubmitHandler}>
+          <input name="text" />
+          <input name="done" type="checkbox" />
+          <input type="submit" value="추가" />
+        </form>
+        {todoList?.map((item) => (
+          <StyledItemDiv>
+            <div key={item.id}>
+              <div>· {item.id} :</div>
+              <div>{item.text}</div>
+              <StyledSmallFont>
+                <div>
+                  {item.done
+                    ? "체크박스를 클릭하셨습니다 !"
+                    : "체크박스를 클릭하지 않으셨습니다 !"}
+                </div>
+              </StyledSmallFont>
+            </div>
+          </StyledItemDiv>
+        ))}
+      </StyledDiv>
+    </StyledDefaultDiv>
   );
 }
 
+const StyledH1 = styled.h1`
+  font-size: 35px;
+`;
+const StyledDefaultDiv = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const StyledDiv = styled.div`
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  border: 2px solid #fff;
+  flex-direction: column;
+  background-color: #1c315e;
+  width: 350px;
+  height: 500px;
+`;
+const StyledItemDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 69%;
+`;
+
+const StyledSmallFont = styled.div`
+  font-size: 3px;
+`;
 export default App;
