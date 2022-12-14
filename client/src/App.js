@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 function App({ todo }) {
   const [todoList, setTodoList] = useState(null);
-
   const fetchData = () => {
     fetch("http://localhost:4000/api/todo")
       .then((response) => response.json())

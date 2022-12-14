@@ -14,7 +14,6 @@ const todoList = [
     done: false,
   },
 ];
-
 app.get("/api/todo", (req, res) => {
   res.json(todoList);
 });
