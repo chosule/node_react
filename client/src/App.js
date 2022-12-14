@@ -45,27 +45,38 @@ function App({ todo }) {
           <input type="submit" value="추가" />
         </form>
         {todoList?.map((item) => (
-          <StyledItemDiv>
-            <div key={item.id}>
-              <div>· {item.id} :</div>
-              <div>{item.text}</div>
-              <StyledSmallFont>
-                <div>
-                  {item.done
-                    ? "체크박스를 클릭하셨습니다 !"
-                    : "체크박스를 클릭하지 않으셨습니다 !"}
-                </div>
-              </StyledSmallFont>
-            </div>
-          </StyledItemDiv>
+          <StyledDivWrapper>
+            <StyleFlex key={item.id}>
+              <div>
+                <StyledFontSize>· {item.id} : </StyledFontSize>
+                <StyledFontSize>{item.text}</StyledFontSize>
+              </div>
+              <StyledFontSize>
+                {item.done ? "check box !" : "no check box !"}
+              </StyledFontSize>
+            </StyleFlex>
+            <hr />
+          </StyledDivWrapper>
         ))}
       </StyledDiv>
     </StyledDefaultDiv>
   );
 }
+const StyledFontSize = styled.span`
+  font-size: 16px;
+`;
 
+const StyledDivWrapper = styled.div`
+  margin-top: 20px;
+  width: 69%;
+`;
+
+const StyleFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 const StyledH1 = styled.h1`
-  font-size: 35px;
+  font-size: 30px;
 `;
 const StyledDefaultDiv = styled.div`
   width: 100%;
@@ -84,13 +95,5 @@ const StyledDiv = styled.div`
   width: 350px;
   height: 500px;
 `;
-const StyledItemDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 69%;
-`;
 
-const StyledSmallFont = styled.div`
-  font-size: 3px;
-`;
 export default App;
